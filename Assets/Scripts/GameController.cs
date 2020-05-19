@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    public Text exittoMenu;
     public Text restartText;
     public Text gameOverText;
     private bool gameOver;
@@ -22,6 +23,7 @@ public class GameController : MonoBehaviour
         restart = false;
         restartText.text = "";
         gameOverText.text = "";
+        exittoMenu.text = "";
         score = 0;
         UpdateScore();
         StartCoroutine(SpawnWaves());
@@ -29,6 +31,9 @@ public class GameController : MonoBehaviour
     void Update() {
         if(restart) {
             if(Input.GetKeyDown(KeyCode.R)) {
+                 UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+            }
+            if(Input.GetKeyDown(KeyCode.Q)) {
                  UnityEngine.SceneManagement.SceneManager.LoadScene(0);
             }
         }
@@ -45,7 +50,8 @@ public class GameController : MonoBehaviour
             }
         yield return new WaitForSeconds(waveWait);
         if(gameOver) {
-            restartText.text = "Press 'R' to restart";
+            restartText.text = "Press 'R' to restart,";
+            exittoMenu.text = "Or press Q to go back to menu.";
             restart = true;
             break;
         }
