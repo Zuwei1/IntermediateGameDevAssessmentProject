@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 	public Boundary boundary;
 	private AudioSource au;
 	public GameObject shot;
+	public GameObject tripleShot;
 	public Transform []shotSpawns;
 	public float fireRate;
 
@@ -23,9 +24,13 @@ public class PlayerController : MonoBehaviour
 	public bool speeding;
 	public float originalSpeed;
 	public float speedUp;
-	public float timer;
+	public float speedTimer ;
+	public float tripleShotTimer ;
 	public bool tripleShotActivated;
-
+	
+	private float speededUpfirerate;
+	private float originalFireRate = 0.5f;
+	
 	void Start() {
 		au = GetComponent<AudioSource>();
 		
@@ -53,11 +58,11 @@ public class PlayerController : MonoBehaviour
 			{
 				Instantiate(shot, shotSpawns[0].position, new Quaternion(0,0,0,0));
 			}
-			else if(tripleShotActivated)
+			if(tripleShotActivated)
 			{
 			foreach(var shotSpawn in shotSpawns)
 			{
-			Instantiate(shot, shotSpawn.position, new Quaternion(0,0,0,0));
+			Instantiate(tripleShot, shotSpawn.position, new Quaternion(0,0,0,0));
 			}
 
 			
@@ -66,21 +71,23 @@ public class PlayerController : MonoBehaviour
 		}
 			if(tripleShotActivated)
 			{
-				timer -= Time.deltaTime;
-			if(timer <= 0)
+				fireRate = 0.3f;
+				tripleShotTimer -= Time.deltaTime;
+			if(tripleShotTimer <= 0)
 			{
-				timer = 5f;
+				tripleShotTimer = 5f;
+				fireRate = originalFireRate;
 				tripleShotActivated = false;
 			}
 			}
 		if(speeding)
 		{
 			speed = speedUp;
-			timer -= Time.deltaTime;
-			if(timer <= 0)
+			speedTimer -= Time.deltaTime;
+			if(speedTimer <= 0)
 			{
 				speed = originalSpeed;
-				timer = 5f;
+				speedTimer = 5f;
 				speeding = false;
 			}
 		}

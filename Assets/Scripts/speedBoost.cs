@@ -10,7 +10,13 @@ public class speedBoost : MonoBehaviour
             other.gameObject.GetComponent<PlayerController>().speeding = true;
             Destroy(this.gameObject);
         }
+
+		if(other.gameObject.GetComponent<PlayerController>().speeding == true)
+		{
+			other.gameObject.GetComponent<PlayerController>().speedTimer = 5.0f;
+		}
     }
+
 
 }
 

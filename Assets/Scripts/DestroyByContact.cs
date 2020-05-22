@@ -25,16 +25,12 @@ public class DestroyByContact : MonoBehaviour
 		}
 		if(explosion != null) {
 		Instantiate(explosion, transform.position, transform.rotation);
-		}
-		if(other.CompareTag("Player")) {
-		//Instantiate(playerExplosion, transform.position, transform.rotation);
-		Instantiate(explosion, transform.position,transform.rotation);
-		//gameController.GameOver();
+		
 		}
 		if(other.gameObject.tag == "Player")
 		{
-			other.GetComponent<PlayerController>().health -=1;
-			Destroy(this.gameObject);
+		Instantiate(explosion, transform.position,transform.rotation);
+			other.GetComponent<PlayerController>().health -=10;
 		if(other.GetComponent<PlayerController>().health == 0)
 		{
 		Instantiate(playerExplosion, transform.position, transform.rotation);
@@ -42,8 +38,11 @@ public class DestroyByContact : MonoBehaviour
 		gameController.GameOver();
 		}
 		}
+		if(other.gameObject.tag == "bolt")
+		{
+			Destroy(other.gameObject);
+		}
 		gameController.AddScore(scoreValue);
-		Destroy(other.gameObject);
 		Destroy(this.gameObject);
 		
 	}
