@@ -11,19 +11,19 @@ public class DestroyByBoundary : MonoBehaviour
 	}
 	void OnTriggerExit(Collider other) {
 		if(other.gameObject.tag=="Enemy") {
+		}
+			if(player.gameObject != null)
+			{
+				if(other.gameObject.tag == "Player"){
 		player.GetComponent<PlayerController>().health -= 5;
-		Destroy(other.gameObject);
-			if(other.gameObject.GetComponent<PlayerController>().health == 0 )
+			if(other.gameObject.GetComponent<PlayerController>().health <= 0 )
 			{
 				 Instantiate(playerExplosion, player.gameObject.transform.position, player.gameObject.transform.rotation);
 			//	Destroy(GameObject.FindGameObjectWithTag("Player"));
 			}
+				}
 		}
-		if(other.gameObject.tag == "Bonus"){
-			Destroy(other.gameObject);
-			return;
-		}
-		if(other.gameObject.tag == "bolt" || other.gameObject.tag == "enemybolt")
+		if(other.gameObject.tag == "bolt" || other.gameObject.tag == "enemybolt" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "Bonus")
 		{
 			Destroy(other.gameObject);
 		}

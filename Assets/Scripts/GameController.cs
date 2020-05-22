@@ -56,11 +56,13 @@ public class GameController : MonoBehaviour
                     
         }
             UpdateHealth();
+			if(player.gameObject != null){
         if( player.GetComponent<PlayerController>().health <= 0) {
                  player.GetComponent<PlayerController>().health = 0;
 				 Destroy(player.gameObject);
                 GameOver();
         }
+	 }
         // every 100 points, increase difficulty
             if(score>= nextWavescore) 
             {
@@ -117,6 +119,7 @@ public class GameController : MonoBehaviour
     }
 
     void UpdateHealth() {
+		if(player.gameObject != null)
         healthText.text = "Health: " +  player.GetComponent<PlayerController>().health;
     }
     
