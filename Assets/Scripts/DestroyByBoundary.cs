@@ -11,7 +11,7 @@ public class DestroyByBoundary : MonoBehaviour
 	}
 	void OnTriggerExit(Collider other) {
 		if(other.gameObject.tag=="Enemy") {
-		player.GetComponent<PlayerController>().health -= 1;
+		player.GetComponent<PlayerController>().health -= 5;
 		Destroy(other.gameObject);
 		}
 		if(other.gameObject.tag == "Bonus"){

@@ -51,24 +51,27 @@ public class GameController : MonoBehaviour
       
                     
         }
+            UpdateHealth();
+        if( player.GetComponent<PlayerController>().health <= 0) {
+                 player.GetComponent<PlayerController>().health = 0;
+                GameOver();
+        }
         // every 100 points, increase difficulty
             if(score>= nextWavescore) 
             {
+				if(nextWavescore >= 1260)
+				{
+					nextWavescore = 1260;
+					return;
+				}
+				else{
                 hazardCount+=1;
 				waveWait -= 0.2f;
 				startWait -= 0.2f;
 				spawnWait -= 0.05f;
                 nextWavescore += 90;
-				if(nextWavescore >= 1260)
-				{
-					nextWavescore = 1260;
 				}
             }     
-        if( player.GetComponent<PlayerController>().health <= 0) {
-                 player.GetComponent<PlayerController>().health = 0;
-                GameOver();
-        }
-            UpdateHealth();
 
 
 
