@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 	public Boundary boundary;
 	private AudioSource au;
 	public GameObject shot;
-	public Transform shotSpawn;
+	public Transform []shotSpawns;
 	public float fireRate;
 
 	private float nextFire;
@@ -47,7 +47,10 @@ public class PlayerController : MonoBehaviour
 		if(/*Input.GetButton("Fire1")*/ Input.GetKey(KeyCode.Space) && Time.time > nextFire) {
 			nextFire = Time.time + fireRate;
 			//GameObject clone = 
+			foreach(var shotSpawn in shotSpawns)
+			{
 			Instantiate(shot, transform.position, new Quaternion(0,0,0,0));
+			}
 			au.Play();
 		}
 		if(speeding)
