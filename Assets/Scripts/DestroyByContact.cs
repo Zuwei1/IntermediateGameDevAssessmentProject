@@ -20,20 +20,26 @@ public class DestroyByContact : MonoBehaviour
 	}
 
 	void OnTriggerEnter(Collider other) {
-	//	if(other.tag == "Boundry" || other.tag == "Enemy") {
-		if(other.CompareTag("Boundry") || other.CompareTag("Enemy")) {
+		if(other.CompareTag("Boundry") || other.CompareTag("Enemy") || other.CompareTag("enemybolt")||other.CompareTag("Bonus")  ) {
 			return;
 		}
 		if(explosion != null) {
 		Instantiate(explosion, transform.position, transform.rotation);
 		}
 		if(other.CompareTag("Player")) {
-		Instantiate(playerExplosion, transform.position, transform.rotation);
-		gameController.GameOver();
+		//Instantiate(playerExplosion, transform.position, transform.rotation);
+		Instantiate(explosion, transform.position,transform.rotation);
+		//gameController.GameOver();
+		}
+		if(other.gameObject.tag == "Player")
+		{
+			other.GetComponent<PlayerController>().health -=1;
+			Destroy(this.gameObject);
+			return;
 		}
 		gameController.AddScore(scoreValue);
 		Destroy(other.gameObject);
-		Destroy(gameObject);
+		Destroy(this.gameObject);
 		
 	}
 }
