@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
     public Text exittoMenu;
     public Text restartText;
     public Text gameOverText;
+	public Text asteroidPointsText;
+	public Text boostsText;
     private bool gameOver;
     private bool restart;
     public Text scoreText;
@@ -31,6 +33,8 @@ public class GameController : MonoBehaviour
         gameOverText.text = "";
         exittoMenu.text = "";
         healthText.text = "";
+		asteroidPointsText.text = "";
+		boostsText.text = "";
         score = 0;
         UpdateScore();
         UpdateHealth();
@@ -54,6 +58,7 @@ public class GameController : MonoBehaviour
             UpdateHealth();
         if( player.GetComponent<PlayerController>().health <= 0) {
                  player.GetComponent<PlayerController>().health = 0;
+				 Destroy(player.gameObject);
                 GameOver();
         }
         // every 100 points, increase difficulty

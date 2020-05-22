@@ -7,8 +7,14 @@ public class healthPack : MonoBehaviour
 	public int healAmount;
 	void OnTriggerEnter(Collider other)
 	{
-		
+		if(other.gameObject.tag == "Player")
+		{
 		other.GetComponent<PlayerController>().health += healAmount;
+		}
+		if(other.CompareTag("Boundry") || other.CompareTag("Enemy") || other.CompareTag("enemybolt")||other.CompareTag("Bonus"))
+		{
+			return;
+		}
 		Destroy(this.gameObject);
 	}
 }
