@@ -24,11 +24,11 @@ public class PlayerController : MonoBehaviour
 	public float originalSpeed;
 	public float speedUp;
 	public float timer;
-
-	public bool speedText;
+	public bool tripleShotActivated;
 
 	void Start() {
 		au = GetComponent<AudioSource>();
+		
 	}
 	void FixedUpdate(){
 		float moveHorizontal = Input.GetAxis("Horizontal");
@@ -44,15 +44,35 @@ public class PlayerController : MonoBehaviour
 		
 	}
 	void Update() {
-		if(/*Input.GetButton("Fire1")*/ Input.GetKey(KeyCode.Space) && Time.time > nextFire) {
+		if(/*Input.GetButton("Fire1")*/ Input.GetKey(KeyCode.Space) && Time.time > nextFire)
+		{
 			nextFire = Time.time + fireRate;
 			//GameObject clone = 
+			
+			if(!tripleShotActivated)
+			{
+				Instantiate(shot, shotSpawns[0].position, new Quaternion(0,0,0,0));
+			}
+			else if(tripleShotActivated)
+			{
 			foreach(var shotSpawn in shotSpawns)
 			{
-			Instantiate(shot, transform.position, new Quaternion(0,0,0,0));
+			Instantiate(shot, shotSpawn.position, new Quaternion(0,0,0,0));
 			}
+
+			
+		}
 			au.Play();
 		}
+			if(tripleShotActivated)
+			{
+				timer -= Time.deltaTime;
+			if(timer <= 0)
+			{
+				timer = 5f;
+				tripleShotActivated = false;
+			}
+			}
 		if(speeding)
 		{
 			speed = speedUp;

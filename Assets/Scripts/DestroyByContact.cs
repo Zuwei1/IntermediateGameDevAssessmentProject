@@ -35,7 +35,12 @@ public class DestroyByContact : MonoBehaviour
 		{
 			other.GetComponent<PlayerController>().health -=1;
 			Destroy(this.gameObject);
-			return;
+		if(other.GetComponent<PlayerController>().health == 0)
+		{
+		Instantiate(playerExplosion, transform.position, transform.rotation);
+		Destroy(other.gameObject);
+		gameController.GameOver();
+		}
 		}
 		gameController.AddScore(scoreValue);
 		Destroy(other.gameObject);

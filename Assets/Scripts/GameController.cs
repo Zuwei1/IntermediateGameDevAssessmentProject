@@ -21,9 +21,10 @@ public class GameController : MonoBehaviour
     public float waveWait;
     private GameObject player;
     public int nextWavescore =80;
+	public GameObject playerExplosion;
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
-   
+   		
         gameOver = false;
         restart = false;
         restartText.text = "";
@@ -58,6 +59,10 @@ public class GameController : MonoBehaviour
 				startWait -= 0.2f;
 				spawnWait -= 0.05f;
                 nextWavescore += 90;
+				if(nextWavescore >= 1260)
+				{
+					nextWavescore = 1260;
+				}
             }     
         if( player.GetComponent<PlayerController>().health <= 0) {
                  player.GetComponent<PlayerController>().health = 0;
