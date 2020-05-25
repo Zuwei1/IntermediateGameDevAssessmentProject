@@ -14,15 +14,16 @@ public class DestroyByBoundary : MonoBehaviour
 		}
 			if(player.gameObject != null)
 			{
-				if(other.gameObject.tag == "Player"){
+				if(other.gameObject.tag == "Enemy"){
 		player.GetComponent<PlayerController>().health -= 5;
-			if(other.gameObject.GetComponent<PlayerController>().health <= 0 )
+			if(player.gameObject.GetComponent<PlayerController>().health <= 0 )
 			{
 				 Instantiate(playerExplosion, player.gameObject.transform.position, player.gameObject.transform.rotation);
 			//	Destroy(GameObject.FindGameObjectWithTag("Player"));
 			}
 				}
 		}
+
 		if(other.gameObject.tag == "bolt" || other.gameObject.tag == "enemybolt" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "Bonus")
 		{
 			Destroy(other.gameObject);

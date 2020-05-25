@@ -9,8 +9,6 @@ public class GameController : MonoBehaviour
     public Text exittoMenu;
     public Text restartText;
     public Text gameOverText;
-	public Text asteroidPointsText;
-	public Text boostsText;
     private bool gameOver;
     private bool restart;
     public Text scoreText;
@@ -33,8 +31,6 @@ public class GameController : MonoBehaviour
         gameOverText.text = "";
         exittoMenu.text = "";
         healthText.text = "";
-		asteroidPointsText.text = "";
-		boostsText.text = "";
         score = 0;
         UpdateScore();
         UpdateHealth();

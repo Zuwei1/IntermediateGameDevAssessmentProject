@@ -11,7 +11,7 @@ public class healthPack : MonoBehaviour
 		{
 		other.GetComponent<PlayerController>().health += healAmount;
 		}
-		if(other.CompareTag("Boundry") || other.CompareTag("Enemy") || other.CompareTag("enemybolt")||other.CompareTag("Bonus"))
+		if(other.CompareTag("Boundry") || other.CompareTag("Enemy") || other.CompareTag("enemybolt")||other.CompareTag("Bonus") || other.CompareTag("bolt"))
 		{
 			return;
 		}
