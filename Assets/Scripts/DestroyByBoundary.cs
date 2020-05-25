@@ -18,7 +18,10 @@ public class DestroyByBoundary : MonoBehaviour
 		player.GetComponent<PlayerController>().health -= 5;
 			if(player.gameObject.GetComponent<PlayerController>().health <= 0 )
 			{
-				 Instantiate(playerExplosion, player.gameObject.transform.position, player.gameObject.transform.rotation);
+				 if(playerExplosion != null)
+				 {
+				 Instantiate(playerExplosion, player.transform.position, player.transform.rotation);
+				 }
 			//	Destroy(GameObject.FindGameObjectWithTag("Player"));
 			}
 				}
